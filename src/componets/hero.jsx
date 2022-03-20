@@ -17,8 +17,6 @@ const Hero = () => {
 
   const handleInput = (e) => {
     setText(e.target.value.trim());
-    console.log(text);
-    console.log(searchTerm);
   };
 
   const addTextToContext = (e) => {

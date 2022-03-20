@@ -10,14 +10,14 @@ export const StateContextProvider = ({ children }) => {
 
   const getResults = async (url) => {
     setLoading(true);
-
+    console.log(process.env);
     const res = await fetch(`${baseUrl}${url}`, {
       method: "GET",
       headers: {
         "x-user-agent": "desktop",
         "x-proxy-location": "EU",
-        "x-rapidapi-host": "google-search3.p.rapidapi.com", //need to add it env file
-        "x-rapidapi-key": "d73d067812msh8caae26a9b7f992p1fbd3bjsnbbf015cbbfc0", //need to add it env file
+        "x-rapidapi-host": "google-search3.p.rapidapi.com",
+        "x-rapidapi-key": `${process.env.REACT_APP_GOOGLE_API_KEY}`,
       },
     });
 
