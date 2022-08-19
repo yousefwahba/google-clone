@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import ReactPlayer from "react-player";
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import ReactPlayer from 'react-player';
 
-import { useStateContext } from "../context/ResultContextProvider";
-import { Loading } from "./Loading";
+import { useStateContext } from '../context/ResultContextProvider';
+import { Loading } from './Loading';
 
 export const Results = () => {
   const { results, loading, getResults, searchTerm, setSearchTerm } =
     useStateContext();
   const location = useLocation();
   useEffect(() => {
-    if (searchTerm !== "") {
-      if (location.pathname === "/videos") {
+    if (searchTerm !== '') {
+      if (location.pathname === '/videos') {
         getResults(`/search/q=${searchTerm} videos`);
       } else {
         getResults(`${location.pathname}/q=${searchTerm}&num=40`);
@@ -22,9 +22,9 @@ export const Results = () => {
   if (loading) return <Loading />;
 
   switch (location.pathname) {
-    case "/search":
+    case '/search':
       return (
-        <div className="sm:px-56 flex flex-wrap justify-between space-y-6 items-center">
+        <div className="p-4 sm:px-56 flex flex-wrap justify-between space-y-6 items-center">
           {results?.results?.map(({ link, title }, index) => (
             <div key={index} className="md:w-2/5 w-full">
               <a href={link} target="_blank" rel="noreferrer">
@@ -39,7 +39,7 @@ export const Results = () => {
           ))}
         </div>
       );
-    case "/images":
+    case '/images':
       return (
         <div className="flex flex-wrap justify-center items-center">
           {results?.image_results?.map(
@@ -58,7 +58,7 @@ export const Results = () => {
           )}
         </div>
       );
-    case "/news":
+    case '/news':
       return (
         <div className="sm:px-56 flex flex-wrap justify-between items-center space-y-6">
           {results?.entries?.map(({ id, links, source, title }) => (
@@ -80,7 +80,7 @@ export const Results = () => {
                   rel="noreferrer"
                   className="hover:underline hover:text-blue-300"
                 >
-                  {" "}
+                  {' '}
                   {source?.href}
                 </a>
               </div>
@@ -88,7 +88,7 @@ export const Results = () => {
           ))}
         </div>
       );
-    case "/videos":
+    case '/videos':
       return (
         <div className="flex flex-wrap ">
           {results?.results?.map((video, index) => (
@@ -104,6 +104,6 @@ export const Results = () => {
         </div>
       );
     default:
-      return "";
+      return '';
   }
 };
